@@ -1,25 +1,26 @@
 # Spark Example Project
-
-This a template of maven project of apache spark application, containing mixed java and scala scripts.
+This a template of maven project of apache spark application, containing mixed java and scala programs.
 >This folder structure and maven config is suitable to build a robost and long-term maintainable enterprise project.
-#### First Of All
-- install JDK
-- install Maven
-
-#### Create Simple Mixed Java and Scala Project
-execute shell command to create a project
+### How to create scala-maven project
+##### Requirements
+- JDK
+- Maven
+##### Create project by maven archetype
+let's use archetyp provided by net.alchim31.maven, artifactId is scala-archetype-simple
 ```bash
-mvn -B archetype:scala-archetype-simple\
-    -DarchetypeGroupId=com.mychaint\
-    -DgroupId=com.mychaint\
-    -DartifactId=example
+mvn -B archetype:generate\
+    -DarchetypeGroupId=net.alchim31.maven\
+    -DarchetypeArtifactId=scala-archetype-simple\
+    -DgroupId=<groupId>\
+    -DartifactId=<artifactId>
 ```
-#### Folder Structure
-##### src
+it is possible to use maven official template of scala maven project: `org.scala-tools.archetypes:scala-archetype-simple`
+please specify repository url `-DremoteRepositories=http://scala-tools.org/repo-releases`
+##### Project Structure
+###### src
 >This is the folder to contain source code. There are two different sub folders under it, "main" is for production scripts to 
 serve business demands, while "test" folder contains test suites for every single production script.
-#### Build Project
-##### pom.xml
+###### pom.xml
 >header defines model version of prototype, groupId, artifactId as well as project version
 ```xml
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -101,7 +102,7 @@ serve business demands, while "test" folder contains test suites for every singl
 <dependency>
     <groupId>org.scalatest</groupId>
     <artifactId>scalatest_${scala.compat.version}</artifactId>
-    <version>2.2.6</version>
+    <version>3.0.1</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -114,7 +115,22 @@ serve business demands, while "test" folder contains test suites for every singl
     <scope>test</scope>
 </dependency>
 ```
->finally, include spark core
+>for dateframe test purposes, also include spark-hive and spark-sql modules, and specify scope of spark-hive as test
+```xml
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-hive_2.11</artifactId>
+    <version>2.1.1</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-sql_2.11</artifactId>
+    <version>2.1.1</version>
+</dependency>
+```
+>include spark core
 ```xml
 <dependency>
     <groupId>org.apache.spark</groupId>

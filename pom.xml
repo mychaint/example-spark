@@ -21,7 +21,6 @@
         <testSourceDirectory>src/test/scala</testSourceDirectory>
         <plugins>
             <plugin>
-                <!-- see http://davidb.github.com/scala-maven-plugin -->
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
                 <version>3.2.2</version>
@@ -47,7 +46,7 @@
                 <configuration>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
-                    <filereports>WDF TestSuite.txt</filereports>
+                    <filereports>TestSuite.txt</filereports>
                 </configuration>
                 <executions>
                     <execution>
@@ -72,7 +71,7 @@
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.compat.version}</artifactId>
-            <version>2.2.6</version>
+            <version>3.0.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -80,6 +79,19 @@
             <artifactId>spark-testing-base_${scala.compat.version}</artifactId>
             <version>2.2.0_0.8.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_2.11</artifactId>
+            <version>2.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Deployment -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
